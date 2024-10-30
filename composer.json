@@ -1,27 +1,18 @@
 {
-    "name": "phoenix/repository",
-    "description": "",
+    "name": "novatorius/blueprint",
+    "description": "Dynamically replaces placeholders within a template string ",
     "type": "library",
-    "homepage": "https://github.com/phoenix/core",
+    "homepage": "https://github.com/novatorius/blueprint",
     "readme": "README.md",
-    "license": "MIT",
-    "scripts": {
-        "php-cs-fixer": "php-cs-fixer fix"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/rooted-phoenix/tests.git"
-        }
-    ],
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "Phoenix\\Core\\": "lib/"
+            "Novatorius\\Blueprint\\": "lib/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Phoenix\\Core\\Tests\\": "tests/"
+            "Novatorius\\Blueprint\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -30,12 +21,15 @@
             "email": "alex@standiford.us"
         }
     ],
-    "require-dev": {
-        "phoenix/tests": "^0.1.0"
-    },
     "config": {
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
+    },
+    "require": {
+      "php": "^8.1"
+    },
+    "require-dev": {
+        "phpnomad/tests": "^0.3.0"
     }
 }

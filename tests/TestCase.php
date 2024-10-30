@@ -1,10 +1,7 @@
 <?php
 
-namespace Phoenix\Core\Tests;
+namespace Novatorius\Blueprint\Tests;
 
-
-use Phoenix\Tests\TestCase as CoreTestCase;
-
-class TestCase extends CoreTestCase
+class TestCase extends \PHPNomad\Tests\TestCase
 {
 }
