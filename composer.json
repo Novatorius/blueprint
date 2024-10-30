@@ -4,7 +4,7 @@
     "type": "library",
     "homepage": "https://github.com/novatorius/blueprint",
     "readme": "README.md",
-    "license": "proprietary",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Novatorius\\Blueprint\\": "lib/"

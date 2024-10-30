@@ -117,7 +117,3 @@ $processed = (new BlueprintProcessor($template))
 
 echo $processed; // Outputs: "Hello, Alice! Today is Monday."
 ```
-
-## License
-
-This project is proprietary software developed by Novatorius, LLC. All rights reserved.
