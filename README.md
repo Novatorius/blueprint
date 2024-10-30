@@ -64,6 +64,11 @@ $definition = new PlaceholderDefinition('{', '}', [
     'name' => 'Alice',
     'day' => 'Monday'
 ]);
+
+$alternativeDefinition = new PlaceholderDefinition('|*', '*|', [
+    'name' => 'Alice',
+    'day' => 'Monday'
+]);
 ```
 
 ## Processing Placeholder Definitions
@@ -75,7 +80,7 @@ you to chain multiple definitions for successive replacement.
 use Novatorius\Blueprint\BlueprintProcessor;
 
 // Define your initial template (the "blueprint").
-$template = "Hello, {name}! Today is {day}.";
+$template = "Hello, {name}! Today is %%day%%.";
 
 // Process the template using the defined placeholders.
 $processed = (new BlueprintProcessor($template))
@@ -89,7 +94,7 @@ For multiple definitions, processDefinitions can be called in sequence:
 
 ```php
 $definition1 = new PlaceholderDefinition('{', '}', ['name' => 'Alice']);
-$definition2 = new PlaceholderDefinition('{', '}', ['day' => 'Monday']);
+$definition2 = new PlaceholderDefinition('%%', '%%', ['day' => 'Monday']);
 
 $processed = (new BlueprintProcessor($template))
     ->processDefinition($definition1)
