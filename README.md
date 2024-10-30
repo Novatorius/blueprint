@@ -55,9 +55,13 @@ The PlaceholderDefinition class defines:
 * An ending delimiter
 * An associative array of placeholder values
 
-To create a placeholder definition:
+## Processing Placeholder Definitions
+
+Once you've created placeholder definitions, you can process them with BlueprintProcessor. This fluent interface allows
+you to chain multiple definitions for successive replacement.
 
 ```php
+use Novatorius\Blueprint\BlueprintProcessor;
 use Novatorius\Blueprint\PlaceholderDefinition;
 
 $definition = new PlaceholderDefinition('{', '}', [
@@ -69,22 +73,14 @@ $alternativeDefinition = new PlaceholderDefinition('|*', '*|', [
     'name' => 'Alice',
     'day' => 'Monday'
 ]);
-```
-
-## Processing Placeholder Definitions
-
-Once you've created placeholder definitions, you can process them with BlueprintProcessor. This fluent interface allows
-you to chain multiple definitions for successive replacement.
-
-```php
-use Novatorius\Blueprint\BlueprintProcessor;
 
 // Define your initial template (the "blueprint").
-$template = "Hello, {name}! Today is %%day%%.";
+$template = "Hello, {name}! Today is |*day*|.";
 
 // Process the template using the defined placeholders.
 $processed = (new BlueprintProcessor($template))
     ->processDefinition($definition)
+    ->processDefinition($alternativeDefinition)
     ->toString();
 
 echo $processed; // Outputs: "Hello, Alice! Today is Monday."
@@ -93,6 +89,8 @@ echo $processed; // Outputs: "Hello, Alice! Today is Monday."
 For multiple definitions, processDefinitions can be called in sequence:
 
 ```php
+$template = "Hello, {name}! Today is %%day%%.";
+
 $definition1 = new PlaceholderDefinition('{', '}', ['name' => 'Alice']);
 $definition2 = new PlaceholderDefinition('%%', '%%', ['day' => 'Monday']);
 
@@ -108,6 +106,8 @@ echo $processed; // Outputs: "Hello, Alice! Today is Monday."
 so it can be automatically cast into a string, as well.
 
 ```php
+$template = "Hello, {name}! Today is %%day%%.";
+
 $definition1 = new PlaceholderDefinition('{', '}', ['name' => 'Alice']);
 $definition2 = new PlaceholderDefinition('%%', '%%', ['day' => 'Monday']);
 
