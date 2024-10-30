@@ -7,7 +7,7 @@ values.
 ## Table of Contents
 
 - [Introduction](#introduction)
-  - [What is a Blueprint?](#what-is-a-blueprint) 
+    - [What is a Blueprint?](#what-is-a-blueprint)
 - [Installation](#installation)
 - [Usage](#usage)
     - [Creating a Placeholder Definition](#creating-a-placeholder-definition)
@@ -100,6 +100,20 @@ $processed = (new BlueprintProcessor($template))
     ->processDefinition($definition1)
     ->processDefinition($definition2)
     ->toString();
+
+echo $processed; // Outputs: "Hello, Alice! Today is Monday."
+```
+
+`BlueprintProcessor` implements PHP's [__toString](https://www.php.net/manual/en/stringable.tostring.php) magic method,
+so it can be automatically cast into a string, as well.
+
+```php
+$definition1 = new PlaceholderDefinition('{', '}', ['name' => 'Alice']);
+$definition2 = new PlaceholderDefinition('%%', '%%', ['day' => 'Monday']);
+
+$processed = (new BlueprintProcessor($template))
+    ->processDefinition($definition1)
+    ->processDefinition($definition2);
 
 echo $processed; // Outputs: "Hello, Alice! Today is Monday."
 ```
