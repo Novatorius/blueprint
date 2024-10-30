@@ -79,7 +79,7 @@ $template = "Hello, {name}! Today is {day}.";
 
 // Process the template using the defined placeholders.
 $processed = (new BlueprintProcessor($template))
-    ->processDefinitions($definition)
+    ->processDefinition($definition)
     ->toString();
 
 echo $processed; // Outputs: "Hello, Alice! Today is Monday."
@@ -92,8 +92,8 @@ $definition1 = new PlaceholderDefinition('{', '}', ['name' => 'Alice']);
 $definition2 = new PlaceholderDefinition('{', '}', ['day' => 'Monday']);
 
 $processed = (new BlueprintProcessor($template))
-    ->processDefinitions($definition1)
-    ->processDefinitions($definition2)
+    ->processDefinition($definition1)
+    ->processDefinition($definition2)
     ->toString();
 
 echo $processed; // Outputs: "Hello, Alice! Today is Monday."
