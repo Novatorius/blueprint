@@ -1,0 +1,30 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            php: [ '7.4', '8.0', '8.1', '8.2' ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up SSH key
+        run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+      - name: Add GitHub to known hosts
+        run: ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Add SSH key to agent
+        run: |
+            eval $(ssh-agent -s)
+            ssh-add ~/.ssh/id_rsa
+      - name: Clear composer cache
+        run: composer clear-cache
+      - uses: php-actions/composer@v6
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        with:
+          configuration: phpunit.xml

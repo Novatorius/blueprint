@@ -1,0 +1,41 @@
+{
+    "name": "phoenix/repository",
+    "description": "",
+    "type": "library",
+    "homepage": "https://github.com/phoenix/core",
+    "readme": "README.md",
+    "license": "MIT",
+    "scripts": {
+        "php-cs-fixer": "php-cs-fixer fix"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rooted-phoenix/tests.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Phoenix\\Core\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phoenix\\Core\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alex Standiford",
+            "email": "alex@standiford.us"
+        }
+    ],
+    "require-dev": {
+        "phoenix/tests": "^0.1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}
