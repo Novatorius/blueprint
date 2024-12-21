@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    versioning-strategy: "auto"
+    labels:
+      - "dependencies"
+      - "php"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
